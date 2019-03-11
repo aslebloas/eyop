@@ -12,6 +12,11 @@
 
 <body>
   <h1>Register</h1>
+  {% csrf_token %}
+  <form action="POST">
+      {{ form }}
+      <button type="submit">Submit</button>
+  </form>
 </body>
 
 </html>
