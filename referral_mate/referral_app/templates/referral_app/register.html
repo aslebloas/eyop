@@ -12,11 +12,17 @@
 
 <body>
   <h1>Register</h1>
-  {% csrf_token %}
-  <form action="POST">
+    <form method="POST">
+    {% csrf_token %}
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}"></div>
+        {{ message }}
+      {% endfor %}
+    {% endif %}
       {{ form }}
       <button type="submit">Submit</button>
   </form>
 </body>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </html>

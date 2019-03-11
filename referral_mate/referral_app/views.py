@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -9,5 +10,13 @@ def home(request):
 
 
 def register(request):
-    form = UserCreationForm()
+    if request.method == 'POST':
+      form = RegisterForm(request.POST)
+      if form.is_valid():
+        form.save()
+        username = form.cleaned_data['username']
+        messages.success(request, f'Account created for {username}')
+        return redirect('referral-home')
+    if request.method == 'GET':
+      form = RegisterForm()
     return render(request, 'referral_app/register.html', {'form': form})
