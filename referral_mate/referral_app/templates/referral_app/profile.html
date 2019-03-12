@@ -1,7 +1,7 @@
-{% extends "referral_app/auth_layout.html" %}
+{% extends "referral_app/layout.html" %}
 
 {% block container %}
-<h1>Profile for {{ user.username }}</h1>
+<h1 class="border-bottom mb-4">Profile for {{ user.username }}</h1>
 {% for code in codes %}
 {{code.code}}
 {{code.criteria}}
