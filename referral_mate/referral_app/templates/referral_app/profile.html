@@ -2,4 +2,13 @@
 
 {% block container %}
 <h1>Profile for {{ user.username }}</h1>
+{% for code in codes %}
+{{code.code}}
+{{code.criteria}}
+{% endfor %}
+
+<h2>My Friends</h2>
+{% for element in relationships %}
+    {{ element.to_person.first_name }}
+{% endfor %}
 {% endblock %}

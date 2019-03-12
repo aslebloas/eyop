@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from .models import Code
+from .models import Code, Relationship
 
 
 def register(request):
@@ -23,7 +23,10 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'referral_app/profile.html')
+    user = request.user
+    codes = Code.objects.filter(owner=user)
+    relationships = Relationship.objects.filter(from_person=request.user.profile)
+    return render(request, 'referral_app/profile.html', {'codes': codes, 'relationships': relationships})
 
 
 class CodesList(ListView):
