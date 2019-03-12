@@ -1,0 +1,11 @@
+{% extends "referral_app/layout.html" %}
+
+{% block container %}
+<h1>Codes from {{ owner.first_name }}</h1>
+{% for code in object_list %}
+
+{{ code.code }}
+{{ code.amount }}{{ code.UOM }}
+{{ code.criteria }}
+{% endfor %}
+{% endblock %}

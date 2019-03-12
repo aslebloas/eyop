@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 
+from .models import Code
 
 # Create your views here.
 def home(request):
@@ -26,3 +28,7 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'referral_app/profile.html')
+
+
+class CodesList(ListView):
+    model = Code

@@ -10,3 +10,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+
+
+class Code(models.Model):
+    code = models.CharField(max_length=256)
+    amount = models.IntegerField()
+    UOM = models.CharField(max_length=8)  # unit of measure
+    criteria = models.TextField(null=True, blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.code
