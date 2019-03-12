@@ -39,6 +39,7 @@ class CodesList(ListView):
 class CodeCreate(LoginRequiredMixin, CreateView):
     model = Code
     fields = ['code', 'amount', 'UOM', 'criteria']
+    success_url = 'codes'
 
     def form_valid(self, form):
         form.instance.owner = self.request.user

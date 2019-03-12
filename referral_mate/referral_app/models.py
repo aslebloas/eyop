@@ -21,3 +21,12 @@ class Code(models.Model):
 
     def __str__(self):
         return self.code
+
+
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=128)
+    url_pattern = models.CharField(max_length=256, blank=True, null=True)
+    logo = models.CharField(max_length=256, blank=True, null=True)
+
+    def __str__(self):
+        return self.brand_name
