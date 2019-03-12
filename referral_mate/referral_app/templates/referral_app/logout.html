@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Logout</title>
-</head>
-<body>
-You have been logged out
-</body>
-</html>
+{% extends "referral_app/auth_layout.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block container %}
+
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}"></div>
+      {{ message }}
+  {% endfor %}
+  {% endif %}
+<div class="content-section">
+  <div class="left">
+
+  </div>
+
+  <div class="right">
+    <div class="small-right">
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">You have been logged out, <br>log in again:</legend>
+        </fieldset>
+        <div class="form-group">
+          <a href="{% url 'login' %}"><button class="btn btn-outline-info">Login</button></a>
+        </div>
+      <div class="border-top pt-3 content-section">
+        <small class="text-muted">
+          Don't have an account?<a class="ml-2" href="{% url 'register' %}">Register</a>
+        </small>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

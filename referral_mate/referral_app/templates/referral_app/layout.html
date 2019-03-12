@@ -15,19 +15,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Our custom CSS -->  
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static "referral_app/main.css" %}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static "referral_app/styles.css" %}">
   </head>
   
   <body>
     <nav>
-      <div><a href="/">Home</a></div>
+      <div class='menu-item'><a href="/">Home</a></div>
       {% if user.is_authenticated %}
-      <div><a href="{% url 'code-create' %}">Add new code</a></div>
-      <div><a href="{% url 'profile' %}">Profile</a></div>
-      <div><a href="{% url 'logout' %}">Logout</a></div>
+      <div class='menu-item'><a href="{% url 'code-create' %}">Add new code</a></div>
+      <div class='menu-item'><a href="{% url 'profile' %}">Profile</a></div>
+      <div class='menu-item'><a href="{% url 'logout' %}">Logout</a></div>
       {% else %}
-      <div><a href="{% url 'login' %}">Login</a></div>
-      <div><a href="{% url 'register' %}">Register</a></div>
+      <div class='menu-item'><a href="{% url 'login' %}">Login</a></div>
+      <div class='menu-item'><a href="{% url 'register' %}">Register</a></div>
       {% endif %}
     </nav>
     <div class="container">
