@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from referral_app import views
-from referral_app.views import CodesList
+from referral_app.views import CodesList, CodeCreate
 
 
 urlpatterns = [
@@ -29,5 +29,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('profile/', views.profile, name='profile'),
     path('codes/', CodesList.as_view(
-        template_name='referral_app/code_list.html'), name='codes-list')
+        template_name='referral_app/code_list.html'), name='codes-list'),
+    path('codes/new', CodeCreate.as_view(), name='code-create')
 ]
