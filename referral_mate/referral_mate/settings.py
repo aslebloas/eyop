@@ -124,5 +124,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'referral-home'
+LOGIN_REDIRECT_URL = 'codes-list'
 LOGIN_URL = 'login'

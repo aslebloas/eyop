@@ -21,14 +21,15 @@ from referral_app.views import CodesList, CodeCreate
 
 
 urlpatterns = [
+    path('', CodesList.as_view(
+        template_name='referral_app/code_list.html'), name='codes-list'),
     path('admin/', admin.site.urls),
     path('referral_app/', include('referral_app.urls')),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(
         template_name='referral_app/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(
+        template_name='referral_app/logout.html'), name='logout'),
     path('profile/', views.profile, name='profile'),
-    path('codes/', CodesList.as_view(
-        template_name='referral_app/code_list.html'), name='codes-list'),
     path('codes/new', CodeCreate.as_view(), name='code-create')
 ]

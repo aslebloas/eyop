@@ -8,12 +8,6 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Code
 
 
-# Create your views here.
-def home(request):
-    """ redirects to home page """
-    return render(request, 'referral_app/index.html')
-
-
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
