@@ -6,6 +6,9 @@
 <div class="cards">
     <div class="card">
         <h1>Friends</h1>
+        {% for element in relationships %}
+            {{ element.to_person.first_name }}
+        {% endfor %}
     </div>
     <div class="card">
         <h1>Add a new code</h1>

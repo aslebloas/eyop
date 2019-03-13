@@ -25,12 +25,19 @@ def register(request):
 def profile(request):
     user = request.user
     codes = Code.objects.filter(owner=user)
-    relationships = Relationship.objects.filter(from_person=request.user.profile)
+    relationships = Relationship.objects.filter(
+        from_person=request.user.profile)
     return render(request, 'referral_app/profile.html', {'codes': codes, 'relationships': relationships})
 
 
-class CodesList(ListView):
-    model = Code
+@login_required
+def home(request):
+    user = request.user
+    codes = Code.objects.filter(owner=user)
+    relationships = Relationship.objects.filter(
+        from_person=request.user.profile)
+    return render(
+        request, 'referral_app/code_list.html', {'codes': codes, 'relationships': relationships})
 
 
 class CodeCreate(LoginRequiredMixin, CreateView):

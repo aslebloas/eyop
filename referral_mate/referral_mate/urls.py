@@ -17,12 +17,11 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from referral_app import views
-from referral_app.views import CodesList, CodeCreate
+from referral_app.views import CodeCreate
 
 
 urlpatterns = [
-    path('', CodesList.as_view(
-        template_name='referral_app/code_list.html'), name='codes-list'),
+    path('', views.home, name='codes-list'),
     path('admin/', admin.site.urls),
     path('referral_app/', include('referral_app.urls')),
     path('register/', views.register, name='register'),
