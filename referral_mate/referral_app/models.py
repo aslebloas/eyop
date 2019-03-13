@@ -54,17 +54,6 @@ class Relationship(models.Model):
             to_people__from_person=self)
 
 
-class Code(models.Model):
-    code = models.CharField(max_length=256)
-    amount = models.IntegerField()
-    UOM = models.CharField(max_length=8)  # unit of measure
-    criteria = models.TextField(null=True, blank=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.code
-
-
 class Brand(models.Model):
     brand_name = models.CharField(max_length=128)
     url_pattern = models.CharField(max_length=256, blank=True, null=True)
@@ -72,3 +61,15 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.brand_name
+
+
+class Code(models.Model):
+    code = models.CharField(max_length=256)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    amount = models.IntegerField()
+    UOM = models.CharField(max_length=8)  # unit of measure
+    criteria = models.TextField(null=True, blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.code
