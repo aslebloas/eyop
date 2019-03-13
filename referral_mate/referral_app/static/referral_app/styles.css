@@ -15,3 +15,11 @@ h1 {
   padding: 1rem;
 }
 
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 400px;
+}
