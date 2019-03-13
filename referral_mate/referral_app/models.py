@@ -7,6 +7,7 @@ class Profile(models.Model):
     first_name = models.CharField(null=True, blank=True, max_length=32)
     last_name = models.CharField(null=True, blank=True, max_length=32)
     city = models.CharField(null=True, blank=True, max_length=32)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     Relationships = models.ManyToManyField(
         'self', through='Relationship', symmetrical=False, related_name='related_to+')
 
