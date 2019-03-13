@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+from landing import views as landing_views
 from referral_app import views
 from referral_app.views import CodesList, CodeCreate
 
 
 urlpatterns = [
+    path('welcome', landing_views.welcome, name='welcome'),
     path('', CodesList.as_view(
         template_name='referral_app/code_list.html'), name='codes-list'),
     path('admin/', admin.site.urls),

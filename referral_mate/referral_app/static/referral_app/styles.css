@@ -1,5 +1,11 @@
+:root {
+  --eyop-main-color: #e60e6f;
+}
+
 body {
   font-family: Montserrat-regular, serif;
+  margin: 0px;
+  background-color: transparent;
 }
 
 nav {
@@ -10,6 +16,55 @@ nav {
 h1 {
   font-weight: bold;
 }
+
+/* ---------------------------------
+LANDING
+------------------------------------*/
+#mc_embed_signup {
+    background: transparent;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+
+}
+.mailing-form {
+  flex: 1;
+  text-align: center;
+  padding-top: 17rem;
+}
+
+.mailing-form h1 {
+  font-size: 3rem;
+  color: var(--eyop-main-color);
+}
+.mailing-form h2, h3 {
+  color: white;
+  text-shadow: 2px 2px #0a0000;
+}
+
+.btn-outline-primary {
+  color: var(--eyop-main-color);
+  border-color: var(--eyop-main-color);
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  border-color: var(--eyop-main-color);
+  background-color: var(--eyop-main-color);
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active {
+  color: white;
+  border-color: var(--eyop-main-color);
+  background-color: var(--eyop-main-color);
+}
+
+#mc_embed_signup input.email {
+  height: 38px;
+}
+
+
 
 .menu-item {
   padding: 1rem;
