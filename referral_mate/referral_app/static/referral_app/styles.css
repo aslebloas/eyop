@@ -1,0 +1,25 @@
+body {
+  font-family: Montserrat-regular, serif;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+.menu-item {
+  padding: 1rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 400px;
+}

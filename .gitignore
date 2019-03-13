@@ -102,3 +102,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Credentials
+credentials.py
+
+# database
+migrations
+
+# emacs synthax
+*~
+#*
