@@ -2,17 +2,36 @@ body {
   font-family: Montserrat-regular, serif;
 }
 
+a, a:hover {
+  color: #323232;
+  text-decoration: none;
+  padding: 0px 10px;
+}
+
 nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end;  
 }
 
 h1 {
   font-weight: bold;
 }
 
-.menu-item {
-  padding: 1rem;
+.menu-item, .menu-item:active {
+  font-family: ProximaNova, sans-serif;
+  color: #323232;
+  text-transform: uppercase;
+  display: block;
+  font-size: 11px;
+  line-height: 40px;
+  padding-top: 30px;
+}
+
+.menu-item:hover {
+  text-shadow: 0 0 1px rgba(0,0,0,.5);
+  font-weight: bold;
+  color: #323232;
+  padding-top: 30px;
 }
 
 .cards {
@@ -22,4 +41,12 @@ h1 {
 
 .card {
   width: 400px;
+}
+
+#logo {
+  display: flex;
+  position: absolute;
+  height: 60px;
+  right: 30px;
+  top: 10px;
 }
