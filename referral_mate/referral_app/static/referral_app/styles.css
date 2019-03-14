@@ -1,3 +1,4 @@
+
 body {
   font-family: Montserrat-regular, serif;
 }
@@ -49,4 +50,32 @@ h1 {
   height: 60px;
   right: 30px;
   top: 10px;
+}
+
+/* -------------------------------------
+Main Page Cards
+----------------------------------------*/
+.row {
+  margin-right: 0px;
+  width: 100%;
+}
+.friends-list {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.friend {
+  padding: 1rem;
+  text-align: center;
+}
+
+.friend p {
+  margin: 0px;
+  color: gray;
+  font-size: small;
+}
+.friends-pic {
+  max-width: 3rem;
+  border-radius: 50%;
 }
