@@ -9,16 +9,19 @@
             <h1>Friends</h1>
             <div class="friends-list">
                 {% for element in relationships %}
-                <div class="friend">
-                    <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
-                        <p>{{ element.to_person.first_name }}</p></div>
+                <a href="{% url 'friend-detail' element.to_person.id %}">
+                    <div class="friend">
+                        <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                            <p>{{ element.to_person.first_name }}</p>
+                    </div>
+                </a>
             {% endfor %}
             </div>
         </div>
 
         <div class="col-sm">
             <h1>Add a new code</h1>
-            <button class="btn btn-outline-primary">Add</button>
+            <a href="{% url 'code-create' %}"><button class="btn btn-outline-primary">Add</button></a>
         </div>
     </div>
     <div class="row">
