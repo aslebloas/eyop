@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,7 @@
         <!-- Begin Mailchimp Signup Form -->
         <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
         <!-- Custom styles -->
-        <link rel="stylesheet" type="text/css" media="screen" href="{% static "styles.css" %}">
+        <link rel="stylesheet" type="text/css" media="screen" href="static/styles.css">
 </head>
 <body class="landing">
     <div class="mailing-form">
@@ -28,11 +27,11 @@
             <div id="mc_embed_signup">
                 <form action="https://online.us20.list-manage.com/subscribe/post?u=8e3abf8183e9025d2e61e394d&amp;id=99655696be" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
-                        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                        <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="email address" required>
                         <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                         <div style="position: absolute; left: -5000px;" aria-hidden="true">
                             <input type="text" name="b_8e3abf8183e9025d2e61e394d_99655696be" tabindex="-1" value=""></div>
-                        <div class="clear">
+                        <div class="clear cta">
                             <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-outline-primary">
                         </div>
                     </div>
