@@ -63,18 +63,3 @@ LANDING
 #mc_embed_signup input.email {
   height: 38px;
 }
-
-
-
-.menu-item {
-  padding: 1rem;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.card {
-  width: 400px;
-}

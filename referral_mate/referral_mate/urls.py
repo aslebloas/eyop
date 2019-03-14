@@ -14,24 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
-from django.urls import path, include
+from django.urls import path
 from landing import views as landing_views
-from referral_app import views
-from referral_app.views import CodesList, CodeCreate
 
 
 urlpatterns = [
     path('welcome', landing_views.welcome, name='welcome'),
-    path('', CodesList.as_view(
-        template_name='referral_app/code_list.html'), name='codes-list'),
     path('admin/', admin.site.urls),
-    path('referral_app/', include('referral_app.urls')),
-    path('register/', views.register, name='register'),
-    path('login/', auth_views.LoginView.as_view(
-        template_name='referral_app/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(
-        template_name='referral_app/logout.html'), name='logout'),
-    path('profile/', views.profile, name='profile'),
-    path('codes/new', CodeCreate.as_view(), name='code-create')
 ]
