@@ -19,6 +19,6 @@ from landing import views as landing_views
 
 
 urlpatterns = [
-    path('welcome', landing_views.welcome, name='welcome'),
+    path('', landing_views.welcome, name='welcome'),
     path('admin/', admin.site.urls),
 ]
