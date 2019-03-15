@@ -36,10 +36,10 @@
 
             <div class="friends-list">
                 {% for element in relationships %}
-                <div class="friend">
+                <a href="{% url 'friend-detail' element.to_person %}"><div class="friend">
                     <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
                     <p>{{ element.to_person.first_name }}</p>
-                </div>
+                </div></a>
                 {% endfor %}
             </div>
         </div>

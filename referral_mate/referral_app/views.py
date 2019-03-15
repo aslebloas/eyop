@@ -5,10 +5,14 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm, AdminPasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 
+<<<<<<< HEAD
 from .models import Code, Relationship
 from social_django.models import UserSocialAuth
+=======
+from .models import Code, Relationship, Profile
+>>>>>>> 7eef657577347ea584d69f2c309db1db37b1df82
 
 
 def register(request):
@@ -17,7 +21,8 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
-            messages.success(request, f'Account created for {username}')
+            messages.success(
+                request, 'Account created for {}'.format(username))
             return redirect('login')
     if request.method == 'GET':
         form = RegisterForm()
@@ -30,7 +35,9 @@ def profile(request):
     codes = Code.objects.filter(owner=user)
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
-    return render(request, 'referral_app/profile.html', {'codes': codes, 'relationships': relationships})
+    return render(
+        request, 'referral_app/profile.html',
+        {'codes': codes, 'relationships': relationships})
 
 
 @login_required
@@ -40,7 +47,8 @@ def home(request):
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
     return render(
-        request, 'referral_app/code_list.html', {'codes': codes, 'relationships': relationships})
+        request, 'referral_app/code_list.html',
+        {'codes': codes, 'relationships': relationships})
 
 """ Social OAuth settings and password change begin """
 
@@ -120,3 +128,7 @@ class CodeUpdate(LoginRequiredMixin, UpdateView):
 class CodeDelete(LoginRequiredMixin, DeleteView):
     model = Code
     success_url = 'codes-list'
+
+
+class FriendDetail(LoginRequiredMixin, DetailView):
+    model = Profile
