@@ -26,8 +26,9 @@
                 {% for element in relationships %}
                 <a href="{% url 'friend-detail' element.to_person.id %}">
                     <div class="friend">
-                    <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
-                        <p>{{ element.to_person.first_name }}</p></div>
+                      <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                        <p>{{ element.to_person.first_name }}</p>
+                    </div>
                 </a>
             {% endfor %}
             </div>
