@@ -3,9 +3,9 @@ from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
-from .models import Code, Relationship
+from .models import Code, Relationship, Profile
 
 
 def register(request):
@@ -57,3 +57,11 @@ class CodeUpdate(LoginRequiredMixin, UpdateView):
 class CodeDelete(LoginRequiredMixin, DeleteView):
     model = Code
     success_url = 'codes-list'
+
+
+class FriendDetail(LoginRequiredMixin, DetailView):
+    model = Profile
+
+
+class FriendDetail(LoginRequiredMixin, DetailView):
+    model = Profile
