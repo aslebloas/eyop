@@ -1,4 +1,5 @@
 /*This applies from 0px to 600px*/
+
 body {
   font-family: Montserrat-regular, serif;
 }
@@ -62,12 +63,13 @@ h1 {
   position: absolute;
   height: 60px;
   right: 30px;
-  top: 10px;*/
+  top: 10px; */
 }
 
 /* -------------------------------------
 Main Page Cards
 ----------------------------------------*/
+
 .row {
   margin-right: 0px;
   width: 100%;
@@ -99,7 +101,6 @@ Main Page Cards
   overflow-y: scroll;
 }
 
-
 .logo-list i {
   margin-right: 10px;
   border-radius:50%;
@@ -115,9 +116,11 @@ input[type="text"] {
   padding: 0.3rem;
   color: gray;
 }
+
 /* -------------------------------------
 Profile Page
 ----------------------------------------*/
+
 .profile-pic {
   max-width: 6rem;
   max-height: 6rem;
@@ -126,7 +129,7 @@ Profile Page
 }
 
 /*This applies from 600px onwards*/
-@media (min-width: 600px) {
 
+@media (min-width: 600px) {
 
 }
