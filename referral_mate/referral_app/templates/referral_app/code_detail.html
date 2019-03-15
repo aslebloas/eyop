@@ -1,0 +1,10 @@
+{% extends "referral_app/layout.html" %}
+
+{% block container %}
+
+<h1 class="mt-3"><i class="fas fa-chevron-left"></i> {{ Code }}</h1>
+<img src="{{ code.brand.logo }}" alt="" class="logo-header">
+Code: {{ code.criteria }}
+from : {{ code.owner.profile.user.username}}
+
+{% endblock %}

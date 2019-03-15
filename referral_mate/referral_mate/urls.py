@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from referral_app import views
-from referral_app.views import CodeCreate, FriendDetail
+from referral_app.views import CodeCreate, FriendDetail, CodeDetail
 
 
 urlpatterns = [
@@ -33,8 +33,11 @@ urlpatterns = [
         template_name='referral_app/logout.html'), name='logout'),
     path('profile/', views.profile, name='profile'),
     path('codes/new', CodeCreate.as_view(), name='code-create'),
+    path('code/<int:pk>', CodeDetail.as_view(), name='code-detail'),
     path('friends/<int:pk>', FriendDetail.as_view(
-        template_name='referral_app/friend_detail.html'), name='friend-detail')
+        template_name='referral_app/friend_detail.html'),
+        name='friend-detail'),
+    path('brand/<int:pk>', views.brand_detail, name='brand-detail')
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,27 @@
+{% extends "referral_app/layout.html" %}
+
+{% block container %}
+
+<h1 class="mt-3"><i class="fas fa-chevron-left"></i> {{ brand }}</h1>
+<img src="{{ brand.logo }}" alt="" class="logo-header">
+
+<h1 class="border-bottom mt-3">Your referrers</h1>
+
+{% if referrers %}
+
+<div class="friends-list">
+    {% for key, value in referrers.items %}
+    <a href="{% url 'code-detail' value %}">
+        <div class="friend">
+            <img src="{{key.image.url}}" alt="" class="friends-pic">
+            <p>{{ key.first_name }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+None
+{% endif %}
+
+
+{% endblock %}
