@@ -35,14 +35,11 @@ urlpatterns = [
         template_name='referral_app/logout.html'), name='logout'),
     path('profile/', views.profile, name='profile'),
     path('codes/new', CodeCreate.as_view(), name='code-create'),
-<<<<<<< HEAD
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^settings/$', views.settings, name='settings'),
     url(r'^settings/password/$', views.password, name='password'),
-=======
     path('friends/<int:pk>', FriendDetail.as_view(
         template_name='referral_app/friend_detail.html'), name='friend-detail')
->>>>>>> 7eef657577347ea584d69f2c309db1db37b1df82
 ]
 
 if settings.DEBUG:

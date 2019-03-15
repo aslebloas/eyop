@@ -7,12 +7,9 @@ from django.contrib.auth.forms import PasswordChangeForm, AdminPasswordChangeFor
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 
-<<<<<<< HEAD
 from .models import Code, Relationship
 from social_django.models import UserSocialAuth
-=======
 from .models import Code, Relationship, Profile
->>>>>>> 7eef657577347ea584d69f2c309db1db37b1df82
 
 
 def register(request):
