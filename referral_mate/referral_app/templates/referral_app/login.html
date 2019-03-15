@@ -2,6 +2,30 @@
 {% load crispy_forms_tags %}
 {% block container %}
 
+<!--- Facebook OAuth SDK Start -->
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '256882241917224',
+      cookie: true,
+      xfbml: true,
+      version: '3.2'
+    });
+
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<!--- Facebook OAuth SDK End -->
+
 <div class="content-section">
   <div class="left">
     
@@ -25,6 +49,13 @@
           <button class="btn btn-outline-info" type="submit">Login</button>
         </div>
       </form>
+
+      <!-- OAuth login begins -->
+      <br>
+      <p><strong>-- OR --</strong></p>
+      <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+      <!-- OAuth login ends -->
+
       <div class="border-top pt-3 content-section">
         <small class="text-muted">
           Don't have an account?<a class="ml-2" href="{% url 'register' %}">Register</a>
@@ -34,4 +65,7 @@
 
   </div>
 </div>
+
+
+
 {% endblock %}
