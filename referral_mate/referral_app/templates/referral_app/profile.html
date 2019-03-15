@@ -23,11 +23,14 @@
         </div>
         <div class="cards col-sm">
             <h2>My Codes</h2>
-            {% for code in codes %}
-            {{code.code}}
-            {{code.criteria}}
+                <div class="row">
+                    <div class="col-sm logo-list">
+                        {% for code in codes %} 
+                        <a href="{% url 'code-detail' code.id %}"><i><img src="{{code.brand.logo}}" width="30" /></i></a>
+                        {% endfor %}
+                    </div>
+                </div>
 
-            {% endfor %}
         </div>
     </div>
     <div class="row">
@@ -36,10 +39,12 @@
 
             <div class="friends-list">
                 {% for element in relationships %}
-                <a href="{% url 'friend-detail' element.to_person %}"><div class="friend">
-                    <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
-                    <p>{{ element.to_person.first_name }}</p>
-                </div></a>
+                <a href="{% url 'friend-detail' element.to_person.id %}">
+                    <div class="friend">
+                        <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                        <p>{{ element.to_person.first_name }}</p>
+                    </div>
+                </a>
                 {% endfor %}
             </div>
         </div>

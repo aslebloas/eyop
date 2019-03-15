@@ -1,6 +1,11 @@
-
+/*This applies from 0px to 600px*/
 body {
   font-family: Montserrat-regular, serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
 }
 
 a, a:hover {
@@ -16,6 +21,7 @@ nav {
 
 h1 {
   font-weight: bold;
+  font-size: 1rem;
 }
 
 .menu-item, .menu-item:active {
@@ -50,12 +56,13 @@ h1 {
   display: flex;
   justify-content: space-around;
 }
-#logo {
-  display: flex;
+.logo {
+  max-width: 100px;
+/*  display: flex;
   position: absolute;
   height: 60px;
   right: 30px;
-  top: 10px;
+  top: 10px;*/
 }
 
 /* -------------------------------------
@@ -86,6 +93,28 @@ Main Page Cards
   border-radius: 50%;
 }
 
+.logo-list {
+  display: flex;
+  padding-bottom: 2rem;
+  overflow-y: scroll;
+}
+
+
+.logo-list i {
+  margin-right: 10px;
+  border-radius:50%;
+  display:inline-block;
+  padding:10px;
+  border: solid 1px lightgray;
+}
+
+input[type="text"] {
+  background-color: whitesmoke;
+  border-color: transparent;
+  border-radius: 2px;
+  padding: 0.3rem;
+  color: gray;
+}
 /* -------------------------------------
 Profile Page
 ----------------------------------------*/
@@ -95,4 +124,9 @@ Profile Page
   border-radius: 50%;
   margin: 1rem;
 }
+
+/*This applies from 600px onwards*/
+@media (min-width: 600px) {
+
+
 }
