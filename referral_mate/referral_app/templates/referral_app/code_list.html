@@ -4,30 +4,46 @@
 
 <h1 class="border-bottom mb-4">Referral Codes</h1>
 <div class="cards">
-    <div class="card">
-        <h1>Friends</h1>
+    <div class="row">
+        <div class="col-sm">
+            <h1>Friends</h1>
+            <div class="friends-list">
+                {% for element in relationships %}
+                <a href="{% url 'friend-detail' element.to_person.id %}">
+                    <div class="friend">
+                        <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                            <p>{{ element.to_person.first_name }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-sm">
+            <h1>Add a new code</h1>
+            <a href="{% url 'code-create' %}"><button class="btn btn-outline-primary">Add</button></a>
+        </div>
     </div>
-    <div class="card">
-        <h1>Add a new code</h1>
-        <button>Add</button>
-    </div>
-    <div class="card">
-        <h1>List of referral codes</h1>
-        <ul>
-            {% for code in object_list %}
-                <li>Code: {{ code.code }}</li>
+    <div class="row">
+        <div class="col-sm">
+            <h1>List of referral codes</h1>
+            <ul>
+                {% for code in object_list %}
+                    <li>Code: {{ code.code }}</li>
+                    <li>bla2</li>
+                    <li>bla3</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-sm">
+            <h1>Feed</h1>
+            <ul>
+                <li>bla</li>
                 <li>bla2</li>
                 <li>bla3</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="card">
-        <h1>Feed</h1>
-            <ul>
-            <li>bla</li>
-            <li>bla2</li>
-            <li>bla3</li>
-        </ul>
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock %}

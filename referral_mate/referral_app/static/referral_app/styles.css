@@ -1,25 +1,98 @@
+
 body {
   font-family: Montserrat-regular, serif;
 }
 
+a, a:hover {
+  color: #323232;
+  text-decoration: none;
+  padding: 0px 10px;
+}
+
 nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end;  
 }
 
 h1 {
   font-weight: bold;
 }
 
-.menu-item {
-  padding: 1rem;
+.menu-item, .menu-item:active {
+  font-family: ProximaNova, sans-serif;
+  color: #323232;
+  text-transform: uppercase;
+  display: block;
+  font-size: 11px;
+  line-height: 40px;
+  padding-top: 30px;
+}
+
+.menu-item:hover {
+  text-shadow: 0 0 1px rgba(0,0,0,.5);
+  font-weight: bold;
+  color: #323232;
+  padding-top: 30px;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
+  margin: 1rem;
+  flex-direction: column;
 }
 
 .card {
   width: 400px;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-around;
+}
+#logo {
+  display: flex;
+  position: absolute;
+  height: 60px;
+  right: 30px;
+  top: 10px;
+}
+
+/* -------------------------------------
+Main Page Cards
+----------------------------------------*/
+.row {
+  margin-right: 0px;
+  width: 100%;
+}
+.friends-list {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.friend {
+  padding: 1rem;
+  text-align: center;
+}
+
+.friend p {
+  margin: 0px;
+  color: gray;
+  font-size: small;
+}
+.friends-pic {
+  max-width: 3rem;
+  border-radius: 50%;
+}
+
+/* -------------------------------------
+Profile Page
+----------------------------------------*/
+.profile-pic {
+  max-width: 6rem;
+  max-height: 6rem;
+  border-radius: 50%;
+  margin: 1rem;
+}
 }

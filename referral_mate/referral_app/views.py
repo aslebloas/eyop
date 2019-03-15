@@ -3,9 +3,9 @@ from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 
-from .models import Code, Relationship
+from .models import Code, Relationship, Profile
 
 
 def register(request):
@@ -14,7 +14,8 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
-            messages.success(request, f'Account created for {username}')
+            messages.success(
+                request, 'Account created for {}'.format(username))
             return redirect('login')
     if request.method == 'GET':
         form = RegisterForm()
@@ -25,12 +26,22 @@ def register(request):
 def profile(request):
     user = request.user
     codes = Code.objects.filter(owner=user)
-    relationships = Relationship.objects.filter(from_person=request.user.profile)
-    return render(request, 'referral_app/profile.html', {'codes': codes, 'relationships': relationships})
+    relationships = Relationship.objects.filter(
+        from_person=request.user.profile)
+    return render(
+        request, 'referral_app/profile.html',
+        {'codes': codes, 'relationships': relationships})
 
 
-class CodesList(ListView):
-    model = Code
+@login_required
+def home(request):
+    user = request.user
+    codes = Code.objects.filter(owner=user)
+    relationships = Relationship.objects.filter(
+        from_person=request.user.profile)
+    return render(
+        request, 'referral_app/code_list.html',
+        {'codes': codes, 'relationships': relationships})
 
 
 class CodeCreate(LoginRequiredMixin, CreateView):
@@ -50,3 +61,7 @@ class CodeUpdate(LoginRequiredMixin, UpdateView):
 class CodeDelete(LoginRequiredMixin, DeleteView):
     model = Code
     success_url = 'codes-list'
+
+
+class FriendDetail(LoginRequiredMixin, DetailView):
+    model = Profile

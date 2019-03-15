@@ -2,13 +2,47 @@
 
 {% block container %}
 <h1 class="border-bottom mb-4">Profile for {{ user.username }}</h1>
-{% for code in codes %}
-{{code.code}}
-{{code.criteria}}
-{% endfor %}
 
-<h2>My Friends</h2>
-{% for element in relationships %}
-    {{ element.to_person.first_name }}
-{% endfor %}
+<div class="cards">
+    <div class="row">
+        <div class="cards col-sm">
+            <h2>My Details</h2>
+            <div class="card-content">
+                <div>
+                    <img src="{{ user.profile.image.url }}" alt="" class="profile-pic">
+                    </div>
+                <div>
+                    <div>username: {{user.username}}</div>
+                    <div>email :{{user.divrofile.email }}</div>
+                    <div>first name: {{user.first_name}}</div>
+                    <div>last name:{{user.last_name}}</div>
+                    <div>city: {{user.city}}</div>
+                </div>
+                <div><a href="#"><button class="btn btn-outline-primary">Edit Profile</button></a></div>
+            </div>
+        </div>
+        <div class="cards col-sm">
+            <h2>My Codes</h2>
+            {% for code in codes %}
+            {{code.code}}
+            {{code.criteria}}
+
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="cards col-sm">
+            <h2>My Friends</h2>
+
+            <div class="friends-list">
+                {% for element in relationships %}
+                <a href="{% url 'friend-detail' element.to_person %}"><div class="friend">
+                    <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                    <p>{{ element.to_person.first_name }}</p>
+                </div></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -43,3 +43,18 @@ body {
   padding-right: 20px;
   padding-top: 20px;
 }
+
+.fa-1x {
+font-size: 1.5rem;
+}
+.navbar-toggler.toggler-example {
+cursor: pointer;
+}
+
+#logo {
+  display: flex;
+  position: absolute;
+  height: 60px;
+  right: 30px;
+  top: 10px;
+}
