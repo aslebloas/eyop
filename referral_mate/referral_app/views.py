@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from social_django.models import UserSocialAuth
-from .models import Code, Relationship, Profile
+from .models import Code, Relationship, Profile, Brand
 
 def register(request):
     if request.method == 'POST':
