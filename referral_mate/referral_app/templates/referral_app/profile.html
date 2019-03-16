@@ -10,7 +10,7 @@
 <div class="cards">
     <div class="row">
         <div class="cards col-sm">
-            <h2>My Details</h2>
+            <h2>MY DETAILS</h2>
             <div class="card-content">
                 <div>
                     <img src="{{ user.profile.image.url }}" alt="" class="profile-pic">
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="cards col-sm">
-            <h2>My Codes</h2>
+            <h2>MY CODES</h2>
                 <div class="row">
                     <div class="col-sm logo-list">
                         {% for code in codes %} 
@@ -39,18 +39,34 @@
     </div>
     <div class="row">
         <div class="cards col-sm">
-            <h2>My Friends</h2>
-
-            <div class="friends-list">
-                {% for element in relationships %}
-                <a href="{% url 'friend-detail' element.to_person.id %}">
-                    <div class="friend">
-                        <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+            <h2>MY FRIENDS</h2>
+            <div class="friends-list flex-col">
+                {% if invitations %}
+                <h3>Friend requests</h3>
+                {% for invitation in invitations %}
+                <a href="">
+                    <div class="friend flex">
+                        <div>
+                            <img src="{{ invitation.sender.profile.image.url }}" alt="" class="friends-pic">
+                        </div>
                         <p>{{ element.to_person.first_name }}</p>
+                        <div><a href="">Approve</a> | <a href="">Deny</a></div>
                     </div>
                 </a>
+                
                 {% endfor %}
+                {% endif %}
             </div>
+        </div>
+        <div class="friends-list">
+            {% for element in relationships %}
+            <a href="{% url 'friend-detail' element.to_person.id %}">
+                <div class="friend">
+                    <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                    <p>{{ element.to_person.first_name }}</p>
+                </div>
+            </a>
+            {% endfor %}
         </div>
     </div>
 </div>

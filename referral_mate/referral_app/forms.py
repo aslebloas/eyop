@@ -20,6 +20,10 @@ class ProfileForm(ModelForm):
 
 
 class InvitationForm(ModelForm):
+    email = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={'placeholder': 'email'}))
+
     class Meta:
         model = Invitation
         fields = ['email']

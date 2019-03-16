@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from social_django.models import UserSocialAuth
-from .models import Code, Relationship, Profile, Brand
+from .models import Code, Relationship, Profile, Brand, Invitation
 
 
 def register(request):
@@ -32,9 +32,11 @@ def profile(request):
     codes = Code.objects.filter(owner=user)
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
+    invitations = Invitation.objects.filter(email=user.email)
     return render(
         request, 'referral_app/profile.html',
-        {'codes': codes, 'relationships': relationships})
+        {'codes': codes, 'relationships': relationships,
+         'invitations': invitations})
 
 
 @login_required

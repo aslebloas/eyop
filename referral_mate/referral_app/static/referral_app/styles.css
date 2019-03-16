@@ -24,7 +24,7 @@ h1 {
   font-weight: bold;
   font-size: 1rem;
 }
-h2 {
+h2, h3 {
   font-size: 0.8rem;
 }
 
@@ -116,7 +116,7 @@ Main Page Cards
   border: solid 1px lightgray;
 }
 
-input[type="text"] {
+input[type="text"], input#id_email {
   background-color: whitesmoke;
   border-color: transparent;
   border-radius: 2px;
@@ -135,6 +135,18 @@ Profile Page
   margin: 1rem;
 }
 
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
 /*This applies from 600px onwards*/
 
 @media (min-width: 600px) {
