@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, InvitationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -10,6 +10,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 
 from social_django.models import UserSocialAuth
 from .models import Code, Relationship, Profile, Brand
+
 
 def register(request):
     if request.method == 'POST':
@@ -42,12 +43,28 @@ def home(request):
     codes = Code.objects.filter(owner=user)
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
+    if request.method == 'POST':
+        form = InvitationForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.sender = user
+            obj.save()
+            obj.send()
+            print("obj saved!")
+            email = form.cleaned_data['email']
+            messages.success(
+                request, 'We sent your invitation to {}'.format(email))
+            return redirect('/')
+    else:
+        form = InvitationForm()
     return render(
         request, 'referral_app/code_list.html',
-        {'codes': codes, 'relationships': relationships})
+        {'codes': codes, 'relationships': relationships,
+        'form': form})
+
+
 
 """ Social OAuth settings and password change begin """
-
 @login_required
 def settings(request):
     user = request.user

@@ -24,7 +24,14 @@ h1 {
   font-weight: bold;
   font-size: 1rem;
 }
+h2 {
+  font-size: 0.8rem;
+}
 
+form {
+  display: flex;
+  justify-content: space-between;
+}
 .menu-item, .menu-item:active {
   font-family: ProximaNova, sans-serif;
   color: #323232;

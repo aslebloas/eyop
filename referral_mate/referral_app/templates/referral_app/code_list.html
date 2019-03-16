@@ -1,5 +1,5 @@
 {% extends "referral_app/layout.html" %}
-
+{% load crispy_forms_tags %}
 {% block container %}
 
 
@@ -34,12 +34,29 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm">
+            <h2>INVITE A FRIEND</h2>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}"></div>
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {{form}}
+                <button class="btn btn-outline-primary">Submit</button>
+            </form>
+            
+        </div>
+    </div>
 
-    <h1 class="border-bottom mt-2 mb-4">ADD A NEW CODE</h1>
+    <h1 class="border-bottom mt-4 mb-4">ADD A NEW CODE</h1>
     <div class="row">
         <div class="col-sm">
             <form action="#">
-                <input type="text" value="url">
+                <input type="text" value="email">
                 <button class="btn btn-outline-primary">Submit</button>
             </form>
         </div>
