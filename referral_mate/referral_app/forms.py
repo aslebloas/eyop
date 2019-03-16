@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from .models import Profile
+from .models import Profile, Relationship, Invitation
 
 
 class RegisterForm(UserCreationForm):
@@ -17,3 +17,9 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'city']
+
+
+class InvitationForm(ModelForm):
+    class Meta:
+        model = Invitation
+        fields = ['email']

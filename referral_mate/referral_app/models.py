@@ -1,5 +1,10 @@
+import requests
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.template.loader import get_template
+from django.template import Context
 
 
 class Profile(models.Model):
@@ -17,9 +22,11 @@ class Profile(models.Model):
 
 RELATIONSHIP_FOLLOWING = 1
 RELATIONSHIP_BLOCKED = 2
+RELATIONSHIP_PENDING = 3
 RELATIONSHIP_STATUSES = (
     (RELATIONSHIP_FOLLOWING, 'Following'),
     (RELATIONSHIP_BLOCKED, 'Blocked'),
+    (RELATIONSHIP_BLOCKED, 'Pending'),
 )
 
 
@@ -73,4 +80,24 @@ class Code(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.code
+        return self.id
+
+
+class Invitation(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    code = models.CharField(max_length=20)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.sender.username
+
+    def send(self):
+        return requests.post(
+            settings.MAILGUN_API_URL,
+            auth=("api", settings.MAILGUN_API_KEY),
+            data={"from": settings.EMAIL_FROM,
+                  "to": [self.email],
+                  "subject": "{} is inviting you to Referral Mate!".format(
+                      self.sender.username),
+                  "text": "Conncect here: <a href='https://referral-mate.online/register?sender={}'>Link</a>".format(self.sender.username)})  # noqa
