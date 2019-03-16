@@ -43,6 +43,12 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^settings/$', views.settings, name='settings'),
     url(r'^settings/password/$', views.password, name='password'),
+    path('password-reset', auth_views.PasswordResetView.as_view(
+        template_name='referral_app/password_reset.html'), name='password_reset'),
+    path('password-reset-done', auth_views.PasswordResetDoneView.as_view(
+        template_name='referral_app/password_reset_done.html'), name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(
+        template_name='referral_app/password_reset_confirm.html'), name='password_reset_confirm'),
 ]
 
 if settings.DEBUG:

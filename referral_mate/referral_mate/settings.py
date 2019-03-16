@@ -161,6 +161,10 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+
 MAILGUN_API_KEY = config('MAILGUN_API_KEY')
 MAILGUN_API_URL = config('MAILGUN_API_URL')
 EMAIL_FROM = config('EMAIL_FROM')
