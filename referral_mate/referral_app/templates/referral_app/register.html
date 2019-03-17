@@ -10,24 +10,22 @@
 {% endfor %}
 {% endif %}
 <div class="content-section">
-  <div class="left">
-
-  </div>
 
   <div class="right">
     <div class="small-right">
-      <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-          <legend class="border-bottom mb-4">Register</legend>
-          {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-          <button class="btn btn-outline-info" type="submit">Register</button>
-        </div>
-      </form>
+      <div class="wrap-login100">
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Register</legend>
+            {{ form|crispy }}
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Register</button>
+          </div>
+        </form>
+      </div>
     </div>
-
   </div>
 </div>
 

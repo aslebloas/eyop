@@ -27,27 +27,25 @@
 <!--- Facebook OAuth SDK End -->
 
 <div class="content-section">
-  <div class="left">
-    
-  </div>
   
   <div class="right">
     <div class="small-right">
-      <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-          {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-          {% endfor %}
-          {% endif %}
-          <legend class="border-bottom mb-4">Log In</legend>
-          {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-          <button class="btn btn-outline-info" type="submit">Login</button>
-        </div>
-      </form>
+      <div class="wrap-login100">
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            <legend class="border-bottom mb-4">Log In</legend>
+            {{ form|crispy }}
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Login</button>
+          </div>
+        </form>
 
       <!-- OAuth login begins -->
       <br>
@@ -55,13 +53,13 @@
       <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
       <!-- OAuth login ends -->
 
-      <div class="border-top pt-3 content-section">
-        <small class="text-muted">
-          Don't have an account?<a class="ml-2" href="{% url 'register' %}">Register</a>
-        </small>
+        <div class="border-top pt-3 content-section">
+          <small class="text-muted">
+            Don't have an account?<a class="ml-2" href="{% url 'register' %}">Register</a>
+          </small>
+        </div>
       </div>
     </div>
-
   </div>
 </div>
 
