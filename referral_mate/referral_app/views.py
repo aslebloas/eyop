@@ -59,16 +59,18 @@ def profile(request):
 def invitation_accept(request, pk):
     invitation = get_object_or_404(Invitation, pk=pk)
     if request.method == 'POST':
-        print("in the post")
-        Relationship(
+        obj, created = Relationship.objects.get_or_create(
             from_person=invitation.sender.profile,
             to_person=get_object_or_404(User, email=invitation.email).profile,
             status=1)
-        rel = Relationship(
+        obj, created = Relationship.objects.get_or_create(
             from_person=get_object_or_404(User, email=invitation.email).profile,
             to_person=invitation.sender.profile,
             status=1)
-        print(rel)
+        print(obj)
+        print(invitation)
+        invitation.delete()
+        print(invitation)
         return redirect('profile')
     return redirect('profile')
 
@@ -77,10 +79,15 @@ def invitation_accept(request, pk):
 def invitation_deny(request, pk):
     invitation = get_object_or_404(Invitation, pk=pk)
     if request.method == 'POST':
-        # Create a Relationship instnace
-        origin = invitation.sender
-        receiver = get_object_or_404(User, email=invitation.email)
-        rel.add_relationship(receiver, 2)
+        obj, created = Relationship.objects.get_or_create(
+            from_person=invitation.sender.profile,
+            to_person=get_object_or_404(User, email=invitation.email).profile,
+            status=2)
+        obj, created = Relationship.objects.get_or_create(
+            from_person=get_object_or_404(User, email=invitation.email).profile,
+            to_person=invitation.sender.profile,
+            status=2)
+        invitation.delete()
         return redirect('profile')
     return redirect('profile')
 
