@@ -19,6 +19,18 @@ class ProfileForm(ModelForm):
         fields = ['first_name', 'last_name', 'city']
 
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ['email']
+
+
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'city', 'image']
+
+
 class InvitationForm(ModelForm):
     email = forms.CharField(
         label='',

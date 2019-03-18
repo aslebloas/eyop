@@ -2,6 +2,7 @@
 
 body {
   font-family: Montserrat-regular, serif;
+  font-size: 12px;
 }
 
 header {
@@ -148,6 +149,10 @@ Profile Page
   flex-direction: row;
 }
 /*This applies from 600px onwards*/
+
+.form-group a {
+  color: var(--blue);
+}
 
 @media (min-width: 600px) {
 

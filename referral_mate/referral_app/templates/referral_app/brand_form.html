@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block container %}
 <h1 class="border-bottom mb-4">Add a new Brand</h1>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="form-group">
         {% csrf_token %}
         {{ form|crispy }}

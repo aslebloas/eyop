@@ -1,5 +1,5 @@
 {% extends "referral_app/layout.html" %}
-
+{% load crispy_forms_tags %}
 {% block container %}
 {% if user.get_full_name %}
     <h1 class="border-bottom mb-4">Profile for {{ user.get_full_name }}</h1>
@@ -14,15 +14,17 @@
             <div class="card-content">
                 <div>
                     <img src="{{ user.profile.image.url }}" alt="" class="profile-pic">
-                    </div>
-                <div>
-                    <div>username: {{ user.username }}</div>
-                    <div>email: {{ user.divrofile.email }}</div>
-                    <div>first name: {{ user.first_name }}</div>
-                    <div>last name: {{ user.last_name }}</div>
-                    <div>city: {{ user.city }}</div>
                 </div>
-                <div><a href="#"><button class="btn btn-outline-primary">Edit Profile</button></a></div>
+            </div>
+            <div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                        <button class="btn btn-outline-primary" type="submit">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="cards col-sm">

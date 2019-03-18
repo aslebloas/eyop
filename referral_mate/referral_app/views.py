@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, InvitationForm
+from .forms import RegisterForm, InvitationForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -35,10 +35,24 @@ def profile(request):
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
     invitations = Invitation.objects.filter(email=user.email)
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(
+                request, 'Your account has been updated')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
     return render(
         request, 'referral_app/profile.html',
         {'codes': codes, 'relationships': relationships,
-         'invitations': invitations})
+         'invitations': invitations,
+         'u_form': u_form, 'p_form': p_form})
 
 
 @login_required
@@ -54,7 +68,6 @@ def home(request):
             obj.sender = user
             obj.save()
             obj.send()
-            print("obj saved!")
             email = form.cleaned_data['email']
             messages.success(
                 request, 'We sent your invitation to {}'.format(email))
