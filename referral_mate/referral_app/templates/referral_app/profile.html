@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-sm logo-list">
                         {% for code in codes %} 
-                        <a href="{% url 'code-detail' code.id %}"><i><img src="{{code.brand.logo}}" width="30" /></i></a>
+                        <a href="{% url 'code-detail' code.id %}"><i><img src="{{code.brand.logo.url}}" width="30" /></i></a>
                         {% endfor %}
                     </div>
                 </div>
@@ -47,12 +47,22 @@
                 <h3>Friend requests</h3>
                 {% for invitation in invitations %}
                 <a href="">
-                    <div class="friend flex">
-                        <div>
-                            <img src="{{ invitation.sender.profile.image.url }}" alt="" class="friends-pic">
-                        </div>
-                        <p>{{ element.to_person.first_name }}</p>
-                        <div><a href="">Approve</a> | <a href="">Deny</a></div>
+                    <div class="friend flex-col">
+
+                            <div>
+                                <img src="{{ invitation.sender.profile.image.url }}" alt="" class="friends-pic">
+                            </div>
+                            <p>{{ element.to_person.first_name }}</p>
+                            <div>
+                                <form method="POST" action="{% url 'invitation-accept' invitation.id %}">
+                                    {% csrf_token %}
+                                    <input type="submit"class="btn btn-outline-success" name="approve" value="Approve">
+                                </form>
+                                <form method="POST" action="{% url 'invitation-deny' invitation.id %}">
+                                    {% csrf_token %}
+                                    <input type="submit"class="btn btn-outline-danger" name="deny" value="Deny">
+                                </form>
+                            </div>
                     </div>
                 </a>
                 

@@ -20,7 +20,9 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from referral_app import views
-from referral_app.views import CodeCreate, FriendDetail, CodeDetail, BrandCreate
+from referral_app.views import (
+    CodeCreate, CodeDetail, BrandCreate, CodeDelete, CodeUpdate
+)
 
 
 
@@ -36,9 +38,13 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('codes/new', CodeCreate.as_view(), name='code-create'),
     path('code/<int:pk>', CodeDetail.as_view(), name='code-detail'),
-    path('friends/<int:pk>', FriendDetail.as_view(
-        template_name='referral_app/friend_detail.html'),
-        name='friend-detail'),
+    path('code/upate/<int:pk>', CodeUpdate.as_view(), name='code-update'),
+    path('code/delete/<int:pk>', CodeDelete.as_view(), name='code-delete'),
+    path('friends/<int:pk>', views.friend_detail, name='friend-detail'),
+
+    path('invitation/<int:pk>/accept', views.invitation_accept, name='invitation-accept'),
+    path('invitation/<int:pk>/deny', views.invitation_deny, name='invitation-deny'),
+
     path('brand/<int:pk>', views.brand_detail, name='brand-detail'),
     path('brand/new>', BrandCreate.as_view(), name='brand-create'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),

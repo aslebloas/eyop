@@ -33,6 +33,10 @@ form {
   display: flex;
   justify-content: space-between;
 }
+
+img {
+  vertical-align: -webkit-baseline-middle;
+}
 .menu-item, .menu-item:active {
   font-family: ProximaNova, sans-serif;
   color: #323232;
@@ -107,6 +111,7 @@ Main Page Cards
   display: flex;
   padding-bottom: 2rem;
   overflow-y: scroll;
+
 }
 
 .logo-list i {
@@ -115,6 +120,7 @@ Main Page Cards
   display:inline-block;
   padding:10px;
   border: solid 1px lightgray;
+  height: 100%;
 }
 
 input[type="text"], input#id_email {
@@ -154,6 +160,16 @@ Profile Page
   color: var(--blue);
 }
 
+/* -------------------------------------
+Code Page
+----------------------------------------*/
+.code-header {
+  margin: 2rem;
+}
+img.logo-header {
+  border-radius: 50%;
+  max-width: 10rem;
+}
 @media (min-width: 600px) {
 
 }

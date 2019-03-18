@@ -6,6 +6,7 @@
     <div class="form-group">
         {% csrf_token %}
         <p>Your brand is not here? Add it <a href="{% url 'brand-create' %}">here</a></p>
+        <p>Add Code url without 'http://'</p>
         {{ form|crispy }}
         <button class="btn btn-outline-info" type="submit">Save</button>
     </div>

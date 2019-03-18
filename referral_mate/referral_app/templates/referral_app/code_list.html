@@ -24,7 +24,7 @@
         <div class="col-sm">
             <div class="friends-list">
                 {% for element in relationships %}
-                <a href="{% url 'friend-detail' element.to_person.id %}">
+                <a href="{% url 'friend-detail' element.to_person.user.id %}">
                     <div class="friend">
                       <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
                         <p>{{ element.to_person.first_name }}</p>

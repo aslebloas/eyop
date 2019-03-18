@@ -8,11 +8,11 @@
         <div class="cards col-sm">
             <div class="card-content">
                 <div>
-                    <img src="{{ object.image.url }}" alt="" class="profile-pic">
+                    <img src="{{ object.profile.image.url }}" alt="" class="profile-pic">
                     </div>
                 <div>
-                    <div>username: {{object.user.username}}</div>
-                    <div>email: {{object.user.email }}</div>
+                    <div>username: {{object.username}}</div>
+                    <div>email: {{object.email }}</div>
                     <div>first name: {{object.first_name}}</div>
                     <div>last name:{{object.last_name}}</div>
                     <div>city: {{object.city}}</div>
@@ -22,9 +22,21 @@
         </div>
     </div>
 </div>
-<h1 class="border-bottom mb-4">{{ object.user.username }}'s codes</h1>
-<div>
+<h1 class="border-bottom mb-4">{{ object.username }}'s codes</h1>
+<div class="row">
+    <div class="col-sm logo-list">
+    {% for code in codes %}
+        <a href="{% url 'code-detail' code.id %}"><i><img src="{{ code.brand.logo.url }}" width="30" /></i></a>
+    {% endfor %}
+    </div>
 </div>
-<h1 class="border-bottom mb-4">{{ object.user.username }}'s friends</h1>
-<div></div>
+<h1 class="border-bottom mb-4">{{ object.username }}'s friends</h1>
+<div class="friends-list flex-col">
+    {% for friend in friends %}
+    <div class="friend flex">
+        <img src="{{ friend.user.profile.image.url }}" alt="" class="friends-pic">
+        <p>{{friend.user.username}}</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
