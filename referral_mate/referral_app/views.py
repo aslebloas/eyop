@@ -193,10 +193,10 @@ class CodeDelete(LoginRequiredMixin, DeleteView):
 
 @login_required
 def friend_detail(request, pk):
-    friend = User.objects.get(pk=pk)
-    codes = Code.objects.filter(owner=friend)
+    friend = Profile.objects.get(pk=pk)
+    codes = Code.objects.filter(owner=friend.user)
     relationships = Relationship.objects.filter(
-        from_person=friend.profile)
+        from_person=friend)
     friends = []
     for element in relationships:
         friends.append(element.to_person)

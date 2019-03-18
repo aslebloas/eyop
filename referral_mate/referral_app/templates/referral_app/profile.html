@@ -75,7 +75,7 @@
             <a href="{% url 'friend-detail' element.to_person.id %}">
                 <div class="friend">
                     <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
-                    <p>{{ element.to_person.first_name }}</p>
+                    <p>{{ element.to_person.user.username }}</p>
                 </div>
             </a>
             {% endfor %}
