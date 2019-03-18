@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from referral_app import views
-from referral_app.views import CodeCreate, FriendDetail, CodeDetail
+from referral_app.views import CodeCreate, FriendDetail, CodeDetail, BrandCreate
 
 
 
@@ -40,6 +40,7 @@ urlpatterns = [
         template_name='referral_app/friend_detail.html'),
         name='friend-detail'),
     path('brand/<int:pk>', views.brand_detail, name='brand-detail'),
+    path('brand/new>', BrandCreate.as_view(), name='brand-create'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^settings/$', views.settings, name='settings'),
     url(r'^settings/password/$', views.password, name='password'),

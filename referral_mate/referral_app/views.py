@@ -173,3 +173,9 @@ def brand_detail(request, pk):
     return render(
         request, 'referral_app/brand_detail.html',
         {'brand': brand, 'referrers': referrers})
+
+
+class BrandCreate(LoginRequiredMixin, CreateView):
+    model = Brand
+    fields = ['brand_name', 'logo']
+    success_url = '/codes/new'
