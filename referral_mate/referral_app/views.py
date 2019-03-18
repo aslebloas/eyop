@@ -3,7 +3,9 @@ from .forms import RegisterForm, InvitationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm, AdminPasswordChangeForm
+from django.contrib.auth.forms import (
+    PasswordChangeForm, AdminPasswordChangeForm
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -62,13 +64,12 @@ def home(request):
     return render(
         request, 'referral_app/code_list.html',
         {'codes': codes, 'relationships': relationships,
-        'form': form})
+         'form': form})
 
 
-
-""" Social OAuth settings and password change begin """
 @login_required
 def settings(request):
+    """ Social OAuth settings and password change begin """
     user = request.user
 
     try:
@@ -128,7 +129,7 @@ def change_password(request):
 
 class CodeCreate(LoginRequiredMixin, CreateView):
     model = Code
-    fields = ['brand', 'code', 'amount', 'UOM', 'criteria']
+    fields = ['brand', 'code', 'description']
     success_url = '/'
 
     def form_valid(self, form):
