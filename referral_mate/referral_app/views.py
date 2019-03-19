@@ -99,7 +99,7 @@ def home(request):
     codes = Code.objects.filter(owner=user)
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
-    brands = Brand.objects.all()
+    brands = Brand.objects.all().order_by('brand_name')
     if request.method == 'POST':
         form = InvitationForm(request.POST)
         if form.is_valid():
