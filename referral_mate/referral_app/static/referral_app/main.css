@@ -1,5 +1,6 @@
 /*This applies from 0px to 600px*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+
 .content-section {
   width: 100%;
   display: -webkit-box;
@@ -9,7 +10,7 @@
   display: flex;
   justify-content: center;
 
-  font-family: Montserrat-Bold, serif;
+  font-family: Montserrat, serif;
   font-size: 12px;
   color: rgba(20, 1, 1, 0.781);
   line-height: 1.2;
