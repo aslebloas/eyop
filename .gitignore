@@ -108,6 +108,7 @@ venv.bak/
 
 # Credentials
 credentials.py
+settings.ini
 
 # database
 migrations
@@ -115,3 +116,4 @@ migrations
 # emacs synthax
 *~
 #*
+
