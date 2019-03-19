@@ -8,14 +8,9 @@
 
     <div class="row">
         <div class="col-sm logo-list">
-            <i><img src="/media/logos/caviar.png" width="30" /></i>
-            <i><img src="/media/logos/grubhub.png" width="30" /></i>
-            <i><img src="/media/logos/homechef.png" width="30" /></i>
-            <i><img src="/media/logos/hoteltonight.png" width="30" /></i>
-            <i><img src="/media/logos/instacart.png" width="30" /></i>
-            <i><img src="/media/logos/groupon.jpg" width="30" /></i>
-            <a href="/brand/1"><i><img src="/media/logos/transferwise.png" width="30" /></i></a>
-            <a href="/brand/9"><i><img src="/media/logos/comcast.jpg" width="30" /></i></a>
+            {% for brand in brands %}
+                <a href="{% url 'brand-detail' brand.id %}"><i><img src="{{ brand.logo.url }}" width="30" /></i></a>
+            {% endfor %}
         </div>
     </div>
 
