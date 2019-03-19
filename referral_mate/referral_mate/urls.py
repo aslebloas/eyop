@@ -46,7 +46,7 @@ urlpatterns = [
     path('invitation/<int:pk>/deny', views.invitation_deny, name='invitation-deny'),
 
     path('brand/<int:pk>', views.brand_detail, name='brand-detail'),
-    path('brand/new>', BrandCreate.as_view(), name='brand-create'),
+    path('brand/new', BrandCreate.as_view(), name='brand-create'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^settings/$', views.settings, name='settings'),
     url(r'^settings/password/$', views.password, name='password'),

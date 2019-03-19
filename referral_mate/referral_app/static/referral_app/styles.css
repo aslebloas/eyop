@@ -1,7 +1,9 @@
 /*This applies from 0px to 600px*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+
 body {
-  font-family: Montserrat-regular, serif;
+  font-family: 'Montserrat', serif;
   font-size: 12px;
 }
 
@@ -40,11 +42,11 @@ img {
   vertical-align: -webkit-baseline-middle;
 }
 .menu-item, .menu-item:active {
-  font-family: ProximaNova, sans-serif;
+  font-family: 'PT Sans Narrow', sans-serif;
   color: #323232;
   text-transform: uppercase;
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 40px;
   padding-top: 30px;
 }
@@ -190,7 +192,13 @@ img.logo-header {
     overflow-y: scroll;
     margin: auto;
     background-color: white;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 0px 23px 3px 23px;
+
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   }
 }
