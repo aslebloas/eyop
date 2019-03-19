@@ -1,45 +1,81 @@
 {% extends "referral_app/layout.html" %}
-
+{% load crispy_forms_tags %}
 {% block container %}
-<h1 class="border-bottom mb-4">Profile for {{ user.username }}</h1>
+{% if user.get_full_name %}
+    <h1 class="border-bottom mb-4">Profile for {{ user.get_full_name }}</h1>
+{% else %}
+    <h1 class="border-bottom mb-4">Profile for {{ user.username }}</h1>
+{% endif %}
 
 <div class="cards">
     <div class="row">
         <div class="cards col-sm">
-            <h2>My Details</h2>
+            <h2>MY DETAILS</h2>
             <div class="card-content">
                 <div>
                     <img src="{{ user.profile.image.url }}" alt="" class="profile-pic">
-                    </div>
-                <div>
-                    <div>username: {{user.username}}</div>
-                    <div>email :{{user.divrofile.email }}</div>
-                    <div>first name: {{user.first_name}}</div>
-                    <div>last name:{{user.last_name}}</div>
-                    <div>city: {{user.city}}</div>
                 </div>
-                <div><a href="#"><button class="btn btn-outline-primary">Edit Profile</button></a></div>
+            </div>
+            <div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                        <button class="btn btn-outline-primary" type="submit">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="cards col-sm">
-            <h2>My Codes</h2>
-            {% for code in codes %}
-            {{code.code}}
-            {{code.criteria}}
+            <h2>MY CODES</h2>
+                <div class="row">
+                    <div class="col-sm logo-list">
+                        {% for code in codes %} 
+                        <a href="{% url 'code-detail' code.id %}"><i><img src="{{code.brand.logo.url}}"width="30" /></i></a>
+                        {% endfor %}
+                    </div>
+                </div>
 
-            {% endfor %}
         </div>
     </div>
     <div class="row">
         <div class="cards col-sm">
-            <h2>My Friends</h2>
-
+            <h2>MY FRIENDS</h2>
+            <div class="friends-list flex-col">
+                {% if invitations %}
+                <h3>Friend requests</h3>
+                {% for invitation in invitations %}
+                    <div class="friend flex flex-row">
+                        <div>
+                            <img src="{{ invitation.sender.profile.image.url }}" alt="" class="friends-pic">
+                            <p>{{ element.to_person.first_name }}</p>
+                        </div>
+                        <div class="flex">
+                            <form method="POST" action="{% url 'invitation-accept' invitation.id %}">
+                                {% csrf_token %}
+                                <input type="submit"class="btn btn-outline-success" name="approve" value="Approve">
+                            </form>
+                            <form method="POST" action="{% url 'invitation-deny' invitation.id %}">
+                                {% csrf_token %}
+                                <input type="submit"class="btn btn-outline-danger" name="deny" value="Deny">
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="cards col-sm">
+            <h3>My current friends</h3>
             <div class="friends-list">
                 {% for element in relationships %}
-                <a href="{% url 'friend-detail' element.to_person %}"><div class="friend">
-                    <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
-                    <p>{{ element.to_person.first_name }}</p>
-                </div></a>
+                <a href="{% url 'friend-detail' element.to_person.id %}">
+                    <div class="friend">
+                        <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                        <p>{{ element.to_person.user.username }}</p>
+                    </div>
+                </a>
                 {% endfor %}
             </div>
         </div>

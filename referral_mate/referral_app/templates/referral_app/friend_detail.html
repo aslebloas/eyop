@@ -1,12 +1,11 @@
 {% extends "referral_app/layout.html" %}
 
 {% block container %}
-<h1 class="border-bottom mb-4">Profile for {{ object.username }}</h1>
+<h1 class="border-bottom mb-4">Profile for {{ object.user.username }}</h1>
 
 <div class="cards">
     <div class="row">
         <div class="cards col-sm">
-            <h2>My Details</h2>
             <div class="card-content">
                 <div>
                     <img src="{{ object.image.url }}" alt="" class="profile-pic">
@@ -21,17 +20,23 @@
                 <div></div>
             </div>
         </div>
-        <div class="cards col-sm">
-            <h2>My Codes</h2>
-        </div>
     </div>
-    <div class="row">
-        <div class="cards col-sm">
-            <h2>{{ object.user.username }}'s friends</h2>
-            <div class="friends-list">
-
-            </div>
-        </div>
+</div>
+<h1 class="border-bottom mb-4">{{ object.user.username }}'s codes</h1>
+<div class="row">
+    <div class="col-sm logo-list">
+    {% for code in codes %}
+        <a href="{% url 'code-detail' code.id %}"><i><img src="{{ code.brand.logo.url }}" width="30" /></i></a>
+    {% endfor %}
     </div>
+</div>
+<h1 class="border-bottom mb-4">{{ object.user.username }}'s friends</h1>
+<div class="friends-list flex-col">
+    {% for friend in friends %}
+    <div class="friend flex">
+        <img src="{{ friend.user.profile.image.url }}" alt="" class="friends-pic">
+        <p>{{friend.user.username}}</p>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

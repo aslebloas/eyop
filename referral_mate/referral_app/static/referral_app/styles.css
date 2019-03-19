@@ -1,23 +1,44 @@
-
+/*This applies from 0px to 600px*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
 body {
   font-family: Montserrat-regular, serif;
+  font-size: 12px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
 }
 
 a, a:hover {
   color: #323232;
   text-decoration: none;
-  padding: 0px 10px;
+  /*padding: 0px 10px;*/
 }
 
 nav {
   display: flex;
-  justify-content: flex-end;  
+  justify-content: flex-end;
+  padding-right: 15px;
 }
 
 h1 {
   font-weight: bold;
+  font-size: 1rem;
+}
+h2, h3 {
+  font-size: 0.8rem;
 }
 
+form {
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  vertical-align: -webkit-baseline-middle;
+}
 .menu-item, .menu-item:active {
   font-family: ProximaNova, sans-serif;
   color: #323232;
@@ -33,6 +54,9 @@ h1 {
   font-weight: bold;
   color: #323232;
   padding-top: 30px;
+}
+.menu-item a{
+  padding: 0px 0.4rem;
 }
 
 .cards {
@@ -50,17 +74,21 @@ h1 {
   display: flex;
   justify-content: space-around;
 }
-#logo {
-  display: flex;
+.logo {
+  max-width: 100px;
+  padding-left: 10px;
+  padding-top: 10px;
+/*  display: flex;
   position: absolute;
   height: 60px;
   right: 30px;
-  top: 10px;
+  top: 10px; */
 }
 
 /* -------------------------------------
 Main Page Cards
 ----------------------------------------*/
+
 .row {
   margin-right: 0px;
   width: 100%;
@@ -86,13 +114,83 @@ Main Page Cards
   border-radius: 50%;
 }
 
+.logo-list {
+  display: flex;
+  padding-bottom: 2rem;
+  overflow-y: scroll;
+
+}
+
+.logo-list i {
+  margin-right: 10px;
+  border-radius:50%;
+  display:inline-block;
+  padding:10px;
+  border: solid 1px lightgray;
+  height: 100%;
+}
+
+input[type="text"], input#id_email {
+  background-color: whitesmoke;
+  border-color: transparent;
+  border-radius: 2px;
+  padding: 0.3rem;
+  color: gray;
+}
+
 /* -------------------------------------
 Profile Page
 ----------------------------------------*/
+
 .profile-pic {
   max-width: 6rem;
   max-height: 6rem;
   border-radius: 50%;
   margin: 1rem;
 }
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+/*This applies from 600px onwards*/
+
+.form-group a {
+  color: var(--blue);
+}
+
+/* -------------------------------------
+Code Page
+----------------------------------------*/
+.code-header {
+  margin: 2rem;
+}
+img.logo-header {
+  border-radius: 50%;
+  max-width: 10rem;
+}
+@media (min-width: 375px) {
+  body {
+    background-image: url("bg-01-new.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  .overall {
+    max-width: 375px;
+    height: 667px;
+    overflow-y: scroll;
+    margin: auto;
+    background-color: white;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
 }

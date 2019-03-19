@@ -1,3 +1,5 @@
+/*This applies from 0px to 600px*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
 .content-section {
   width: 100%;
   display: -webkit-box;
@@ -15,26 +17,32 @@
   letter-spacing: 1px;
 }
 
-.left {
-  flex: 1;
-}
-
 .right {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 150px;
+
+  width: 100%;
+  margin: 0 auto;
 }
 
-.small-right {
-  width: 75%;
+.wrap-login100 {
+  width: 300px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 30px 23px 33px 23px;
+
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 body {
-  background-image: url("bg-01.jpg");
+  background-image: url("bg-01-new.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .logo {
@@ -47,14 +55,31 @@ body {
 .fa-1x {
 font-size: 1.5rem;
 }
+
 .navbar-toggler.toggler-example {
 cursor: pointer;
 }
 
 #logo {
+  max-width: 100px;
   display: flex;
-  position: absolute;
-  height: 60px;
-  right: 30px;
-  top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*This applies from 600px onwards*/
+
+@media (min-width: 375px) {
+  body {
+    max-width: 375px;
+    margin: auto;
+  }
+  .overall {
+    max-width: 375px;
+    max-height: 667px;
+    overflow-y: scroll;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
 }

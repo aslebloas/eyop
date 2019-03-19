@@ -6,30 +6,27 @@
 
   {% if messages %}
     {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}"></div>
-      {{ message }}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
   {% endfor %}
   {% endif %}
 <div class="content-section">
-  <div class="left">
-
-  </div>
 
   <div class="right">
     <div class="small-right">
+      <div class="wrap-login100">
         <fieldset class="form-group">
           <legend class="border-bottom mb-4">You have been logged out, <br>log in again:</legend>
         </fieldset>
         <div class="form-group">
           <a href="{% url 'login' %}"><button class="btn btn-outline-info">Login</button></a>
         </div>
-      <div class="border-top pt-3 content-section">
-        <small class="text-muted">
-          Don't have an account?<a class="ml-2" href="{% url 'register' %}">Register</a>
-        </small>
-      </div>
-    </div>
-
+        <div class="border-top pt-3 content-section">
+          <small class="text-muted">
+            Don't have an account?<a class="ml-2" href="{% url 'register' %}">Register</a>
+          </small>
+        </div>
+     </div>
+   </div>
   </div>
 </div>
 {% endblock %}

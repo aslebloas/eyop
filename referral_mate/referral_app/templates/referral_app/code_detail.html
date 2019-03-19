@@ -1,0 +1,45 @@
+{% extends "referral_app/layout.html" %}
+
+{% block container %}
+
+<h1 class="mt-3">{{ code.brand.brand_name }}</h1>
+<div class="flex flex-col">
+    <div class="code-header">
+        <img src="{{ code.brand.logo.url }}" alt="" class="logo-header">
+    </div>
+    <div class="flex flex-row">
+        {{ code.description }}
+    </div>
+    <div class="flex flex-row">
+        <div>Brought to you by:</div>
+        <a href="{% url 'friend-detail' code.owner.profile.id %}">
+            <div class="friend">
+                <img src="{{ code.owner.profile.image.url }}" alt="" class="friends-pic">
+                <p>{{ code.owner.profile.first_name }}</p>
+            </div>
+        </a>
+    </div>
+    {% if code.owner != user %}
+    <div class="flex flex-row">
+        <div>Use Code:</div>
+        <a href="http://{{ code.code }}" target="_blank"><button class="btn btn-outline-primary">Use Referral</button></a>
+    </div>
+    {% endif %}
+    {% if code.owner == user %}
+        <div class="flex flex-row">
+            <div>
+                <a href="http://{{ code.code }}" target="_blank"><button class="btn btn-outline-primary">See Link</button></a>
+            </div>
+            <div>
+                <a href="{% url 'code-delete' code %}"><button class="btn btn-outline-danger">Delete</button></a>
+            </div>
+            <div>
+                <a href="{% url 'code-update' code %}"><button class="btn btn-outline-warning">Update</button></a>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
