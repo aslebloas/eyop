@@ -99,6 +99,7 @@ def home(request):
     codes = Code.objects.filter(owner=user)
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
+    brands = Brand.objects.all()
     if request.method == 'POST':
         form = InvitationForm(request.POST)
         if form.is_valid():
@@ -114,7 +115,7 @@ def home(request):
         form = InvitationForm()
     return render(
         request, 'referral_app/code_list.html',
-        {'codes': codes, 'relationships': relationships,
+        {'codes': codes, 'brands': brands, 'relationships': relationships,
          'form': form})
 
 
