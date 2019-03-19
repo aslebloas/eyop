@@ -109,7 +109,6 @@ venv.bak/
 # Credentials
 credentials.py
 settings.ini
-settings.py
 
 # database
 migrations
