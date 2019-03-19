@@ -14,6 +14,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from social_django.models import UserSocialAuth
 from .models import Code, Relationship, Profile, Brand, Invitation, User
 
+import uuid
+
 
 def register(request):
     if request.method == 'POST':
@@ -31,6 +33,7 @@ def register(request):
 
 @login_required
 def profile(request):
+    cache_id = uuid.uuid4()
     user = request.user
     codes = Code.objects.filter(owner=user)
     relationships = Relationship.objects.filter(
@@ -53,7 +56,7 @@ def profile(request):
         request, 'referral_app/profile.html',
         {'codes': codes, 'relationships': relationships,
          'invitations': invitations,
-         'u_form': u_form, 'p_form': p_form})
+         'u_form': u_form, 'p_form': p_form, 'cache_id': cache_id})
 
 
 @login_required
@@ -95,6 +98,7 @@ def invitation_deny(request, pk):
 
 @login_required
 def home(request):
+    cache_id = uuid.uuid4()
     user = request.user
     codes = Code.objects.filter(owner=user)
     relationships = Relationship.objects.filter(
@@ -116,7 +120,7 @@ def home(request):
     return render(
         request, 'referral_app/code_list.html',
         {'codes': codes, 'brands': brands, 'relationships': relationships,
-         'form': form})
+         'cache_id': cache_id, 'form': form})
 
 
 @login_required
@@ -202,6 +206,7 @@ class CodeDelete(LoginRequiredMixin, DeleteView):
 
 @login_required
 def friend_detail(request, pk):
+    cache_id = uuid.uuid4()
     friend = Profile.objects.get(pk=pk)
     codes = Code.objects.filter(owner=friend.user)
     relationships = Relationship.objects.filter(
@@ -210,7 +215,8 @@ def friend_detail(request, pk):
     for element in relationships:
         friends.append(element.to_person)
     return render(request, 'referral_app/friend_detail.html',
-        {'object': friend, 'codes': codes, 'friends': friends})
+        {'object': friend, 'codes': codes,
+         'friends': friends, 'cache_id': cache_id})
 
 
 class CodeDetail(LoginRequiredMixin, DetailView):
@@ -219,6 +225,7 @@ class CodeDetail(LoginRequiredMixin, DetailView):
 
 @login_required
 def brand_detail(request, pk):
+    cache_id = uuid.uuid4()
     brand = Brand.objects.get(pk=pk)
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
@@ -235,7 +242,7 @@ def brand_detail(request, pk):
 
     return render(
         request, 'referral_app/brand_detail.html',
-        {'brand': brand, 'referrers': referrers})
+        {'brand': brand, 'referrers': referrers, 'cache_id': cache_id})
 
 
 class BrandCreate(LoginRequiredMixin, CreateView):
