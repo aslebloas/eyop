@@ -87,6 +87,7 @@ img {
   top: 10px; */
 }
 
+
 /* -------------------------------------
 Main Page Cards
 ----------------------------------------*/
@@ -183,10 +184,9 @@ Code Page
   margin: 2rem;
 }
 img.logo-header {
-  border-radius: 50%;
   max-width: 10rem;
 }
-@media (min-width: 375px) {
+@media (min-width: 414px) {
   body {
     background-image: url("bg-01-new.jpg");
     background-repeat: no-repeat;
