@@ -25,7 +25,7 @@ def register(request):
             username = form.cleaned_data['username']
             messages.success(
                 request, 'Account created for {}'.format(username))
-            return redirect('login')
+            return redirect('/')
     if request.method == 'GET':
         form = RegisterForm()
     return render(request, 'referral_app/register.html', {'form': form})

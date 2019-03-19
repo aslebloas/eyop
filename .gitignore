@@ -118,5 +118,5 @@ migrations
 #*
 
 # Media files
-media/*
-
+media/*.jpg
+media/*.png
