@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['localhost']
-
+# ALLOWED_HOSTS = ['18.216.74.143', 'referral-mate.online', 'ec2-18-216-74-143.us-east-2.compute.amazonaws.com', '0.0.0.0', 'localhost']
 
 # Application definition
 
@@ -131,7 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 

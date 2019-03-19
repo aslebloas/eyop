@@ -98,4 +98,4 @@ class Invitation(models.Model):
                   "to": [self.email],
                   "subject": "{} is inviting you to Referral Mate!".format(
                       self.sender.username),
-                  "text": "Conncect here: http://referral-mate.online/register?sender={}".format(self.sender.username)})  # noqa
+                  "text": "Connect here: http://referral-mate.online/register?sender={}".format(self.sender.username)})  # noqa
