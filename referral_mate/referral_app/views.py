@@ -8,6 +8,7 @@ from django.contrib.auth.forms import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from social_django.models import UserSocialAuth
@@ -179,8 +180,8 @@ def change_password(request):
 
 class CodeCreate(LoginRequiredMixin, CreateView):
     model = Code
-    fields = ['brand', 'code', 'description']
-    success_url = '/'
+    fields = ['code', 'brand', 'description']
+    success_url = '/profile'
 
     def form_valid(self, form):
         form.instance.owner = self.request.user

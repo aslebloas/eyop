@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-sm logo-list">
                         {% for code in codes %} 
-                        <a href="{% url 'code-detail' code.id %}"><i><img src="{{code.brand.logo.url}}" width="30" /></i></a>
+                        <a href="{% url 'code-detail' code.id %}"><i><img src="{{code.brand.logo.url}}"width="30" /></i></a>
                         {% endfor %}
                     </div>
                 </div>
@@ -46,39 +46,38 @@
                 {% if invitations %}
                 <h3>Friend requests</h3>
                 {% for invitation in invitations %}
-                <a href="">
-                    <div class="friend flex-col">
-
-                            <div>
-                                <img src="{{ invitation.sender.profile.image.url }}" alt="" class="friends-pic">
-                            </div>
+                    <div class="friend flex flex-row">
+                        <div>
+                            <img src="{{ invitation.sender.profile.image.url }}" alt="" class="friends-pic">
                             <p>{{ element.to_person.first_name }}</p>
-                            <div>
-                                <form method="POST" action="{% url 'invitation-accept' invitation.id %}">
-                                    {% csrf_token %}
-                                    <input type="submit"class="btn btn-outline-success" name="approve" value="Approve">
-                                </form>
-                                <form method="POST" action="{% url 'invitation-deny' invitation.id %}">
-                                    {% csrf_token %}
-                                    <input type="submit"class="btn btn-outline-danger" name="deny" value="Deny">
-                                </form>
-                            </div>
+                        </div>
+                        <div class="flex">
+                            <form method="POST" action="{% url 'invitation-accept' invitation.id %}">
+                                {% csrf_token %}
+                                <input type="submit"class="btn btn-outline-success" name="approve" value="Approve">
+                            </form>
+                            <form method="POST" action="{% url 'invitation-deny' invitation.id %}">
+                                {% csrf_token %}
+                                <input type="submit"class="btn btn-outline-danger" name="deny" value="Deny">
+                            </form>
+                        </div>
                     </div>
-                </a>
-                
                 {% endfor %}
                 {% endif %}
             </div>
         </div>
-        <div class="friends-list">
-            {% for element in relationships %}
-            <a href="{% url 'friend-detail' element.to_person.id %}">
-                <div class="friend">
-                    <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
-                    <p>{{ element.to_person.user.username }}</p>
-                </div>
-            </a>
-            {% endfor %}
+        <div class="cards col-sm">
+            <h3>My current friends</h3>
+            <div class="friends-list">
+                {% for element in relationships %}
+                <a href="{% url 'friend-detail' element.to_person.id %}">
+                    <div class="friend">
+                        <img src="{{ element.to_person.image.url }}" alt="" class="friends-pic">
+                        <p>{{ element.to_person.user.username }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

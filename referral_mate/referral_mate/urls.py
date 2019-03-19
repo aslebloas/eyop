@@ -38,7 +38,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('codes/new', CodeCreate.as_view(), name='code-create'),
     path('code/<int:pk>', CodeDetail.as_view(), name='code-detail'),
-    path('code/upate/<int:pk>', CodeUpdate.as_view(), name='code-update'),
+    path('code/update/<int:pk>', CodeUpdate.as_view(), name='code-update'),
     path('code/delete/<int:pk>', CodeDelete.as_view(), name='code-delete'),
     path('friends/<int:pk>', views.friend_detail, name='friend-detail'),
 

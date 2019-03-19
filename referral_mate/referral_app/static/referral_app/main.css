@@ -1,5 +1,5 @@
 /*This applies from 0px to 600px*/
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
 .content-section {
   width: 100%;
   display: -webkit-box;
@@ -41,6 +41,7 @@
 body {
   background-image: url("bg-01-new.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -68,5 +69,17 @@ cursor: pointer;
 
 /*This applies from 600px onwards*/
 
-@media (min-width: 600px) {
+@media (min-width: 375px) {
+  body {
+    max-width: 375px;
+    margin: auto;
+  }
+  .overall {
+    max-width: 375px;
+    max-height: 667px;
+    overflow-y: scroll;
+    margin: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
 }
