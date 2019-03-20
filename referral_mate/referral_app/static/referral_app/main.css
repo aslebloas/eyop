@@ -43,7 +43,7 @@
 body {
   background-image: url("bg-01-new.jpg");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
   background-color: rgba(255, 255, 255, 0.4);
 }
 

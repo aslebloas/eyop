@@ -21,10 +21,27 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.save()
             username = form.cleaned_data['username']
             messages.success(
                 request, 'Account created for {}'.format(username))
+            obj, created = Relationship.objects.get_or_create(
+            from_person=get_object_or_404(User, id=2).profile,
+            to_person=user.profile,
+            status=1)
+            obj, created = Relationship.objects.get_or_create(
+            from_person=user.profile,
+            to_person=get_object_or_404(User, id=2).profile,
+            status=1)
+            obj, created = Relationship.objects.get_or_create(
+            from_person=get_object_or_404(User, id=4).profile,
+            to_person=user.profile,
+            status=1)
+            obj, created = Relationship.objects.get_or_create(
+            from_person=user.profile,
+            to_person=get_object_or_404(User, id=4).profile,
+            status=1)
             return redirect('/')
     if request.method == 'GET':
         form = RegisterForm()
