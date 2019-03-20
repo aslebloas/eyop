@@ -5,8 +5,23 @@
 body {
   font-family: 'Montserrat', serif;
   font-size: 12px;
-  
+  background-image: url("bg-01-new.jpg");
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.4);
 }
+
+.overall {
+  overflow-y: scroll;
+  margin: auto;
+  max-height: 750px;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  }
 
 header {
   display: flex;
@@ -192,18 +207,18 @@ img.logo-header {
 }
 @media (min-width: 414px) {
   body {
-    background-image: url("bg-01-new.jpg");
+    background-image: url("bg-01-new-cropped.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     background-color: rgba(255, 255, 255, 0.4);
   }
 
 .overall {
-  max-width: 375px;
-  height: 667px;
+  max-width: 700px;
+  height: 730px;
   overflow-y: scroll;
   margin: auto;
-  background-color: white;
+
   margin-top: 2rem;
   margin-bottom: 2rem;
 

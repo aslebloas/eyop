@@ -18,6 +18,7 @@
   letter-spacing: 1px;
 }
 
+
 .right {
   flex: 1;
   display: flex;
@@ -42,7 +43,7 @@
 body {
   background-image: url("bg-01-new.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -76,8 +77,8 @@ cursor: pointer;
     margin: auto;
   }
   .overall {
-    max-width: 375px;
-    max-height: 667px;
+    max-width: 500px;
+    height: 667px;
     overflow-y: scroll;
     margin: auto;
     margin-top: 3rem;
