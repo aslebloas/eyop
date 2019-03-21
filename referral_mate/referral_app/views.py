@@ -272,8 +272,16 @@ def friend_detail(request, pk):
          'friends': friends, 'cache_id': cache_id})
 
 
-class CodeDetail(LoginRequiredMixin, DetailView):
+class CodeDetail(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Code
+
+    def test_func(self):
+        friends = []
+        rels = Relationship.objects.filter(
+            from_person=self.request.user.profile)
+        for element in rels:
+            friends.append(element)
+        return self.get_object().owner in friends
 
 
 @login_required
