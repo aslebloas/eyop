@@ -1,13 +1,34 @@
 {% extends "referral_app/layout.html" %}
 {% load crispy_forms_tags %}
 {% block container %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
 <h1 class="border-bottom mb-4">Add a new Code</h1>
 <form method="post">
-    <div class="form-group">
+    <div class="form-group flex flex-col">
         {% csrf_token %}
-        <p>Your brand is not here? Add it <a href="{% url 'brand-create' %}">here</a></p>
-        <p>Add Code url without 'http://'</p>
-        {{ form|crispy }}
+        <div class="form-field">
+            <label for="{{ form.code.id_for_label }}">{{ form.code.label }}</label>
+            <span class="form-control">{{ form.code }}</span>
+        </div>
+        <br>
+        <div class="form-field">
+            <label for="{{ form.brand.id_for_label }}">{{ form.brand.label }}</label>
+            <span class="form-control">{{ form.brand }}</span>
+            <p>Your brand is not here? Add it <a href="{% url 'brand-create' %}">here</a></p>
+        </div>
+        <br>
+        <div class="form-field">
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            
+            {{ form.description }}
+        </div>
+        <br>
         <button class="btn btn-outline-info" type="submit">Save</button>
     </div>
 </form>
