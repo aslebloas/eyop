@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, InvitationForm, UserUpdateForm, ProfileUpdateForm
+from .forms import (
+    RegisterForm, InvitationForm, UserUpdateForm,
+    ProfileUpdateForm, CodeCreateForm
+)
 from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import (
     PasswordChangeForm, AdminPasswordChangeForm
@@ -9,7 +12,9 @@ from django.contrib.auth.forms import (
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import (
+    CreateView, UpdateView, DeleteView, DetailView
+)
 
 from social_django.models import UserSocialAuth
 from .models import Code, Relationship, Profile, Brand, Invitation, User
@@ -21,27 +26,30 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
+            user = form.save()
             username = form.cleaned_data['username']
             messages.success(
                 request, 'Account created for {}'.format(username))
             obj, created = Relationship.objects.get_or_create(
-            from_person=get_object_or_404(User, id=2).profile,
-            to_person=user.profile,
-            status=1)
+                from_person=get_object_or_404(User, id=2).profile,
+                to_person=user.profile,
+                status=1)
             obj, created = Relationship.objects.get_or_create(
-            from_person=user.profile,
-            to_person=get_object_or_404(User, id=2).profile,
-            status=1)
+                from_person=user.profile,
+                to_person=get_object_or_404(User, id=2).profile,
+                status=1)
             obj, created = Relationship.objects.get_or_create(
-            from_person=get_object_or_404(User, id=4).profile,
-            to_person=user.profile,
-            status=1)
+                from_person=get_object_or_404(User, id=4).profile,
+                to_person=user.profile,
+                status=1)
             obj, created = Relationship.objects.get_or_create(
-            from_person=user.profile,
-            to_person=get_object_or_404(User, id=4).profile,
-            status=1)
+                from_person=user.profile,
+                to_person=get_object_or_404(User, id=4).profile,
+                status=1)
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=password)
+            login(request, user)
+
             return redirect('/')
     if request.method == 'GET':
         form = RegisterForm()
@@ -198,6 +206,27 @@ def change_password(request):
 
 
 """ Social OAuth settings and password change end """
+
+
+@login_required
+def code_create(request):
+    """Create a new referral code"""
+    if request.method == 'POST':
+        form = CodeCreateForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.owner = request.user
+            if obj.code.startswith('http://'):
+                obj.code = obj.code[7:]
+            if obj.code.startswith('https://'):
+                obj.code = obj.code[8:]
+            obj.save()
+            messages.success(
+                request, 'Code {} Created, Add a new one:'.format(obj.code))
+            return redirect('/codes/new')
+    else:
+        form = CodeCreateForm()
+    return render(request, 'referral_app/code_form.html', {'form': form})
 
 
 class CodeCreate(LoginRequiredMixin, CreateView):

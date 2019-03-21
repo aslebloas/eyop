@@ -36,7 +36,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(
         template_name='referral_app/logout.html'), name='logout'),
     path('profile/', views.profile, name='profile'),
-    path('codes/new', CodeCreate.as_view(), name='code-create'),
+    path('codes/new', views.code_create, name='code-create'),
     path('code/<int:pk>', CodeDetail.as_view(), name='code-detail'),
     path('code/update/<int:pk>', CodeUpdate.as_view(), name='code-update'),
     path('code/delete/<int:pk>', CodeDelete.as_view(), name='code-delete'),
