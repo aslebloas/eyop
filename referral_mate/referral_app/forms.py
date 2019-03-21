@@ -1,8 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models.functions import Lower
 from django.forms import ModelForm
-from .models import Profile, Relationship, Invitation, Code
+
+from .models import Profile, Relationship, Invitation, Code, Brand
 
 
 class RegisterForm(UserCreationForm):
@@ -42,6 +44,10 @@ class InvitationForm(ModelForm):
 
 
 class CodeCreateForm(ModelForm):
+    brand = forms.ModelChoiceField(
+        queryset=Brand.objects.order_by(Lower('brand_name')))
+
     class Meta:
         model = Code
+        ordering = ['brand']
         fields = ['code', 'brand', 'description']

@@ -283,6 +283,8 @@ def brand_detail(request, pk):
     relationships = Relationship.objects.filter(
         from_person=request.user.profile)
 
+    form = InvitationForm()
+
     friends = []
     for element in relationships:
         friends.append(element.to_person)
@@ -295,7 +297,8 @@ def brand_detail(request, pk):
 
     return render(
         request, 'referral_app/brand_detail.html',
-        {'brand': brand, 'referrers': referrers, 'cache_id': cache_id})
+        {'brand': brand, 'referrers': referrers,
+         'cache_id': cache_id, 'form': form})
 
 
 class BrandCreate(LoginRequiredMixin, CreateView):
