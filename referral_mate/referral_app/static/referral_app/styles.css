@@ -158,6 +158,15 @@ Main Page Cards
   height: 100%;
 }
 
+input#id_email {
+  background-color: white;
+  border: solid 1px lightgray;
+  border-radius: 2px;
+  padding: 0.3rem;
+  color: gray;
+  width: 200px;
+}
+
 #send {
   margin-left: 1rem;
 }
