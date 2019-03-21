@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import (
     PasswordChangeForm, AdminPasswordChangeForm
 )
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -239,15 +240,21 @@ class CodeCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class CodeUpdate(LoginRequiredMixin, UpdateView):
+class CodeUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Code
     fields = [ 'code', 'brand', 'description']
     success_url = '/profile'
 
+    def test_func(self):
+        return self.get_object().owner == self.request.user
 
-class CodeDelete(LoginRequiredMixin, DeleteView):
+
+class CodeDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Code
     success_url = '/profile'
+
+    def test_func(self):
+        return self.get_object().owner == self.request.user
 
 
 @login_required
