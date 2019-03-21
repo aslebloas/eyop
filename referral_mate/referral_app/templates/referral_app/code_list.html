@@ -56,13 +56,10 @@
 
     <h1 class="border-bottom mt-4 mb-4">MY CODES</h1>
     <div class="row">
-        <div class="col-sm">
+        <div class="col-sm logo-list">
             {% if codes.all %}
                 {% for code in codes %}
-                <div class="circle">
-                    <a href="{% url 'code-detail' code.id %}"><i><img src="{{code.brand.logo.url}}"width="30" /></i></a>
-                </div>
-
+                    <a href="{% url 'code-detail' code.id %}"><i><img src="{{ code.brand.logo.url }}" width="30" /></i></a>
                 {% endfor %}
             {% else %}
                 <p>You don't have any codes yet</p>
