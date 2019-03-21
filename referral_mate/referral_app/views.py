@@ -276,12 +276,12 @@ class CodeDetail(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Code
 
     def test_func(self):
-        friends = []
+        friends = [self.request.user.profile]
         rels = Relationship.objects.filter(
             from_person=self.request.user.profile)
         for element in rels:
-            friends.append(element)
-        return self.get_object().owner in friends
+            friends.append(element.to_person)
+        return self.get_object().owner.profile in friends
 
 
 @login_required
