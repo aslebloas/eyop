@@ -39,14 +39,6 @@ def register(request):
                 from_person=user.profile,
                 to_person=get_object_or_404(User, id=2).profile,
                 status=1)
-            obj, created = Relationship.objects.get_or_create(
-                from_person=get_object_or_404(User, id=4).profile,
-                to_person=user.profile,
-                status=1)
-            obj, created = Relationship.objects.get_or_create(
-                from_person=user.profile,
-                to_person=get_object_or_404(User, id=4).profile,
-                status=1)
             password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=password)
             login(request, user)

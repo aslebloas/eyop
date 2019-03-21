@@ -53,12 +53,12 @@
                 <h3>Friend requests</h3>
                 {% for invitation in invitations %}
                     <div class="friend flex flex-row">
-                        <div>
+                        <div class="mr-2">
                             <img src="{{ invitation.sender.profile.image.url }}" alt="" class="friends-pic">
-                            <p>{{ element.to_person.first_name }}</p>
+                            <p>{{ invitation.sender.username }}</p>
                         </div>
                         <div class="flex">
-                            <form method="POST" action="{% url 'invitation-accept' invitation.id %}">
+                            <form method="POST" action="{% url 'invitation-accept' invitation.id %}" class="mr-2">
                                 {% csrf_token %}
                                 <input type="submit"class="btn btn-outline-success" name="approve" value="Approve">
                             </form>
